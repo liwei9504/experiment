@@ -1,0 +1,42 @@
+*{
+    padding:0;
+    margin:0;
+}
+ul{list-style: none;}
+a{text-decoration:none}
+fieldset,img{border:0;vertical-align:top;}
+a,input,button,select,textarea{outline:none;}
+.box{
+    width:1200px;
+    margin:100px auto;
+}
+.sbox{
+    height:500px;
+    position: relative;
+}
+.sbox li{
+    position: absolute;
+    left:200px;
+    top:0;
+}
+.sbox li img{
+    width:100%;
+}
+.icn{
+    opacity:0;
+    position: relative;
+    z-index:100;
+}
+.prev,.next{
+    width:76px;
+    height:112px;
+    position: absolute;
+    top:250px;
+    margin-top:-56px;
+    background: url(../images/prev.png) no-repeat;
+    z-index: 99;
+}
+.next{
+    right:0;
+    background-image: url(../images/next.png);
+}

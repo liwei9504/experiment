@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+<div class="box" id="box">
+    <div class="sbox" id="sbox">
+        <ul>
+        <li><img src="../images/slidepic1.jpg" alt=""></li>
+        <li><img src="../images/slidepic2.jpg" alt=""></li>
+        <li><img src="../images/slidepic3.jpg" alt=""></li>
+        <li><img src="../images/slidepic4.jpg" alt=""></li>
+        <li><img src="../images/slidepic5.jpg" alt=""></li>
+        </ul>
+        <div class="icn" id="icn">
+            <a href="javascript:;" class="prev"></a>
+            <a href="javascript:;" class="next"></a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script src="../../animate.js"></script>
+<script>
+    function $(id){
+        return document.getElementById(id);
+    }
+    var box=$("box");
+    var sbox=$("sbox");
+    var icn=$("icn");
+    var lis = sbox.getElementsByTagName("li");
+    box.onmouseover=function(){
+        change(icn, {'opacity':100});
+    }
+    box.onmouseout=function(){
+        change(icn, {'opacity':0});
+    }
+    var json = [
+        {   //  1
+            width:400,
+            top:20,
+            left:50,
+            opacity:20,
+            z:2
+        },
+        {  // 2
+            width:600,
+            top:70,
+            left:0,
+            opacity:80,
+            z:3
+        },
+        {   // 3
+            width:800,
+            top:100,
+            left:200,
+            opacity:100,
+            z:4
+        },
+        {  // 4
+            width:600,
+            top:70,
+            left:600,
+            opacity:80,
+            z:3
+        },
+        {   //5
+            width:400,
+            top:20,
+            left:750,
+            opacity:20,
+            z:2
+        }
+    ];
+    move();
+   var as=icn.children;
+    var jieliu=true;
+    for(var k in as){
+        as[k].onclick=function (){
+            if(this.className=="prev"){
+              if(jieliu==true){
+                  move(false);
+                  jieliu=false;
+              }
+            }
+            else if(this.className=="next"){
+              if(jieliu==true){
+                  move(true);
+                  jieliu=false;
+              }
+            }
+        }
+    }
+    function move(flag){
+        if(flag){
+            json.unshift(json.pop());
+        }
+        else{
+            json.push(json.shift());
+        }
+        for(var i=0;i<lis.length;i++){
+            change(lis[i],{
+                width:json[i].width,
+                top:json[i].top,
+                left:json[i].left,
+                opacity:json[i].opacity,
+                zIndex:json[i].z
+            },function (){
+                jieliu=true;
+            })
+        }
+    }
+</script>
